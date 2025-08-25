@@ -1,103 +1,423 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Truck, Clock, Shield, MapPin, Users, CheckCircle, Phone, Mail, ArrowRight } from "lucide-react"
 
-export default function Home() {
+export default function VPLogisticsLanding() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Truck className="h-8 w-8 text-primary" />
+            <span className="text-2xl font-bold text-primary">VP Logistics</span>
+          </div>
+          <nav className="hidden md:flex items-center space-x-6">
+            <a href="#services" className="text-sm font-medium hover:text-primary transition-colors">
+              Services
+            </a>
+            <a href="#process" className="text-sm font-medium hover:text-primary transition-colors">
+              Process
+            </a>
+            <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">
+              About
+            </a>
+            <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
+              Contact
+            </a>
+          </nav>
+          <Button>Get Quote</Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative py-20 lg:py-32">
+        <div className="container">
+          <div className="mx-auto max-w-4xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              Professional Last-Mile Delivery Solutions
+            </Badge>
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+              Reliable Logistics
+              <span className="text-primary"> You Can Trust</span>
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
+              Leading logistics partner specializing in efficient package delivery, driver management, and comprehensive
+              supply chain solutions with advanced tracking and professional service.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Button size="lg" className="h-12 px-8">
+                Get Started
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button variant="outline" size="lg" className="h-12 px-8 bg-transparent">
+                Learn More
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Comprehensive Logistics Services</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              From driver dispatch to quality assurance, we handle every aspect of your delivery needs
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <Card className="relative overflow-hidden">
+              <CardHeader className="text-center">
+                <div className="flex flex-col items-center space-y-2">
+                  <Users className="h-6 w-6 text-primary" />
+                  <CardTitle>Driver Dispatch Services</CardTitle>
+                </div>
+                <CardDescription>
+                  Comprehensive morning dispatch including route optimization and system finalization
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center justify-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                    <span>Route optimization</span>
+                  </li>
+                  <li className="flex items-center justify-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                    <span>Address verification</span>
+                  </li>
+                  <li className="flex items-center justify-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                    <span>Dashboard management</span>
+                  </li>
+                </ul>
+                <div className="flex justify-center mt-4">
+                  <Badge variant="outline">
+                    5:51 AM - 9:04 AM
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="relative overflow-hidden">
+              <CardHeader className="text-center">
+                <div className="flex flex-col items-center space-y-2">
+                  <MapPin className="h-6 w-6 text-primary" />
+                  <CardTitle>Package Delivery Management</CardTitle>
+                </div>
+                <CardDescription>
+                  Real-time tracking and professional delivery with quality assurance protocols
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center justify-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                    <span>Real-time tracking</span>
+                  </li>
+                  <li className="flex items-center justify-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                    <span>Quality assurance</span>
+                  </li>
+                  <li className="flex items-center justify-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                    <span>Damage prevention</span>
+                  </li>
+                </ul>
+                <div className="flex justify-center mt-4">
+                  <Badge variant="outline">
+                    Continuous Monitoring
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="relative overflow-hidden">
+              <CardHeader className="text-center">
+                <div className="flex flex-col items-center space-y-2">
+                  <Shield className="h-6 w-6 text-primary" />
+                  <CardTitle>24/7 Problem Resolution</CardTitle>
+                </div>
+                <CardDescription>
+                  Immediate response to driver inquiries and delivery issues with emergency protocols
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center justify-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                    <span>Emergency protocols</span>
+                  </li>
+                  <li className="flex items-center justify-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                    <span>Technical support</span>
+                  </li>
+                  <li className="flex items-center justify-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                    <span>Real-time assistance</span>
+                  </li>
+                </ul>
+                <div className="flex justify-center mt-4">
+                  <Badge variant="outline">
+                    9:00 AM - End of Day
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Overview */}
+      <section id="process" className="py-20 bg-muted/30">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Quality Process</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              6-step quality assurance process ensuring accurate package tracking and delivery
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              { step: 1, title: "Package Verification", desc: "Ensure all packages are scanned into the system" },
+              { step: 2, title: "Financial Compliance", desc: "Proper scanning ensures payment and avoids penalties" },
+              { step: 3, title: "Re-scan Safety Protocol", desc: "When in doubt, re-scan packages for safety" },
+              {
+                step: 4,
+                title: "Scanning Troubleshooting",
+                desc: "Adjust phone angle or lighting for better scanning",
+              },
+              { step: 5, title: "Label Replacement", desc: "Handle damaged or invalid labels through operations" },
+              { step: 6, title: "Damage Control", desc: "Immediate handling of damaged or leaking packages" },
+            ].map((item) => (
+              <Card key={item.step} className="text-center">
+                <CardHeader>
+                  <div className="mx-auto w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-lg mb-4">
+                    {item.step}
+                  </div>
+                  <CardTitle className="text-lg">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Marketing Banner */}
+      <section className="py-20 bg-gradient-to-r from-primary/5 to-secondary/5">
+        <div className="container">
+          <div className="mx-auto max-w-6xl">
+            <div className="relative overflow-hidden rounded-2xl bg-primary text-primary-foreground">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/90"></div>
+              <div className="relative px-8 py-16 md:px-16 md:py-20">
+                <div className="grid gap-8 md:grid-cols-2 items-center">
+                  <div>
+                    <Badge variant="secondary" className="mb-4 bg-white/20 text-white border-white/30">
+                      Limited Time Offer
+                    </Badge>
+                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+                      Scale Your Business with Professional Logistics
+                    </h2>
+                    <p className="text-lg opacity-90 mb-6">
+                      Join hundreds of businesses who trust VP Logistics for reliable, on-time delivery. Get started
+                      today and experience the difference professional logistics makes.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
+                        Start Free Trial
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="border-white/30 text-white hover:bg-white/10 bg-transparent"
+                      >
+                        Schedule Demo
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="relative">
+                    <div className="grid grid-cols-2 gap-4">
+                      <Card className="bg-white/10 border-white/20 text-white">
+                        <CardContent className="p-4 text-center">
+                          <div className="text-2xl font-bold">99.8%</div>
+                          <div className="text-sm opacity-80">On-Time Delivery</div>
+                        </CardContent>
+                      </Card>
+                      <Card className="bg-white/10 border-white/20 text-white">
+                        <CardContent className="p-4 text-center">
+                          <div className="text-2xl font-bold">24/7</div>
+                          <div className="text-sm opacity-80">Support Available</div>
+                        </CardContent>
+                      </Card>
+                      <Card className="bg-white/10 border-white/20 text-white">
+                        <CardContent className="p-4 text-center">
+                          <div className="text-2xl font-bold">500+</div>
+                          <div className="text-sm opacity-80">Happy Clients</div>
+                        </CardContent>
+                      </Card>
+                      <Card className="bg-white/10 border-white/20 text-white">
+                        <CardContent className="p-4 text-center">
+                          <div className="text-2xl font-bold">5★</div>
+                          <div className="text-sm opacity-80">Average Rating</div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-primary text-primary-foreground">
+        <div className="container">
+          <div className="mx-auto max-w-4xl">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Ready to Get Started?</h2>
+              <p className="mt-4 text-lg opacity-90">
+                Contact us today for professional logistics solutions tailored to your business needs
+              </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              <Card className="bg-primary-foreground text-foreground">
+                <CardHeader>
+                  <CardTitle>Get in Touch</CardTitle>
+                  <CardDescription>Send us a message and we&apos;ll respond within 24 hours</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <Input placeholder="First Name" />
+                    <Input placeholder="Last Name" />
+                  </div>
+                  <Input placeholder="Email Address" />
+                  <Input placeholder="Company Name" />
+                  <Textarea placeholder="Tell us about your logistics needs..." className="min-h-[120px]" />
+                  <Button className="w-full">
+                    Send Message
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3">
+                      <Clock className="h-5 w-5 opacity-80" />
+                      <div>
+                        <p className="font-medium">Business Hours</p>
+                        <p className="opacity-90">5:00 AM - 6:00 PM PST</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <Phone className="h-5 w-5 opacity-80" />
+                      <div>
+                        <p className="font-medium">Phone Support</p>
+                        <p className="opacity-90">Available during business hours</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <Mail className="h-5 w-5 opacity-80" />
+                      <div>
+                        <p className="font-medium">Email Support</p>
+                        <p className="opacity-90">24/7 response within 4 hours</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold mb-4">Service Areas</h3>
+                  <p className="opacity-90">
+                    We provide comprehensive logistics services across multiple regions with our professional driver
+                    network and advanced tracking systems.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t py-12">
+        <div className="container">
+          <div className="grid gap-8 md:grid-cols-4">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <Truck className="h-6 w-6 text-primary" />
+                <span className="text-xl font-bold text-primary">VP Logistics</span>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Professional last-mile delivery solutions with reliable, on-time service and advanced tracking.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-4">Services</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>Driver Dispatch</li>
+                <li>Package Delivery</li>
+                <li>Route Optimization</li>
+                <li>Quality Assurance</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>About Us</li>
+                <li>Our Process</li>
+                <li>Careers</li>
+                <li>Contact</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-4">Support</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>Help Center</li>
+                <li>Driver Resources</li>
+                <li>Technical Support</li>
+                <li>Emergency Contact</li>
+              </ul>
+            </div>
+          </div>
+
+          <Separator className="my-8" />
+
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-sm text-muted-foreground">© 2024 VP Logistics. All rights reserved.</p>
+            <div className="flex space-x-6 text-sm text-muted-foreground mt-4 md:mt-0">
+              <a href="#" className="hover:text-foreground transition-colors">
+                Privacy Policy
+              </a>
+              <a href="#" className="hover:text-foreground transition-colors">
+                Terms of Service
+              </a>
+              <a href="#" className="hover:text-foreground transition-colors">
+                Cookie Policy
+              </a>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
