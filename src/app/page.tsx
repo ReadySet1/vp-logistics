@@ -9,6 +9,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Clock, Shield, MapPin, Users, CheckCircle, Phone, Mail, ArrowRight } from "lucide-react"
 import { useState, type FormEvent } from "react"
 import { Logo } from "@/components/logo"
+import { GetQuoteModal } from "@/components/get-quote-modal"
+import { motion } from "framer-motion"
 
 export default function VPLogisticsLanding() {
   const [formData, setFormData] = useState({
@@ -20,6 +22,7 @@ export default function VPLogisticsLanding() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -75,34 +78,55 @@ export default function VPLogisticsLanding() {
               Contact
             </a>
           </nav>
-          <Button>Get Quote</Button>
+          <Button onClick={() => setIsQuoteModalOpen(true)}>Get Quote</Button>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32">
+      <section className="relative py-20 lg:py-32 overflow-hidden">
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
-            <Badge variant="secondary" className="mb-4">
-              Professional Last-Mile Delivery Solutions
-            </Badge>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Badge variant="secondary" className="mb-4">
+                Professional Last-Mile Delivery Solutions
+              </Badge>
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl"
+            >
               Reliable Logistics
               <span className="text-primary"> You Can Trust</span>
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto"
+            >
               Leading logistics partner specializing in efficient package delivery, driver management, and comprehensive
               supply chain solutions with advanced tracking and professional service.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Button size="lg" className="h-12 px-8">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-10 flex items-center justify-center gap-x-6"
+            >
+              <Button size="lg" className="h-12 px-8" onClick={() => setIsQuoteModalOpen(true)}>
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button variant="outline" size="lg" className="h-12 px-8 bg-transparent">
                 Learn More
               </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -118,104 +142,63 @@ export default function VPLogisticsLanding() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="relative overflow-hidden">
-              <CardHeader className="text-center">
-                <div className="flex flex-col items-center space-y-2">
-                  <Users className="h-6 w-6 text-primary" />
-                  <CardTitle>Driver Dispatch Services</CardTitle>
-                </div>
-                <CardDescription>
-                  Comprehensive morning dispatch including route optimization and system finalization
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center justify-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
-                    <span>Route optimization</span>
-                  </li>
-                  <li className="flex items-center justify-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
-                    <span>Address verification</span>
-                  </li>
-                  <li className="flex items-center justify-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
-                    <span>Dashboard management</span>
-                  </li>
-                </ul>
-                <div className="flex justify-center mt-4">
-                  <Badge variant="outline">
-                    5:51 AM - 9:04 AM
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="relative overflow-hidden">
-              <CardHeader className="text-center">
-                <div className="flex flex-col items-center space-y-2">
-                  <MapPin className="h-6 w-6 text-primary" />
-                  <CardTitle>Package Delivery Management</CardTitle>
-                </div>
-                <CardDescription>
-                  Real-time tracking and professional delivery with quality assurance protocols
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center justify-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
-                    <span>Real-time tracking</span>
-                  </li>
-                  <li className="flex items-center justify-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
-                    <span>Quality assurance</span>
-                  </li>
-                  <li className="flex items-center justify-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
-                    <span>Damage prevention</span>
-                  </li>
-                </ul>
-                <div className="flex justify-center mt-4">
-                  <Badge variant="outline">
-                    Continuous Monitoring
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="relative overflow-hidden">
-              <CardHeader className="text-center">
-                <div className="flex flex-col items-center space-y-2">
-                  <Shield className="h-6 w-6 text-primary" />
-                  <CardTitle>24/7 Problem Resolution</CardTitle>
-                </div>
-                <CardDescription>
-                  Immediate response to driver inquiries and delivery issues with emergency protocols
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center justify-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
-                    <span>Emergency protocols</span>
-                  </li>
-                  <li className="flex items-center justify-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
-                    <span>Technical support</span>
-                  </li>
-                  <li className="flex items-center justify-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
-                    <span>Real-time assistance</span>
-                  </li>
-                </ul>
-                <div className="flex justify-center mt-4">
-                  <Badge variant="outline">
-                    9:00 AM - End of Day
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
+            {[
+              {
+                icon: Users,
+                title: "Driver Dispatch Services",
+                description: "Comprehensive morning dispatch including route optimization and system finalization",
+                features: ["Route optimization", "Address verification", "Dashboard management"],
+                badge: "5:51 AM - 9:04 AM",
+                delay: 0,
+              },
+              {
+                icon: MapPin,
+                title: "Package Delivery Management",
+                description: "Real-time tracking and professional delivery with quality assurance protocols",
+                features: ["Real-time tracking", "Quality assurance", "Damage prevention"],
+                badge: "Continuous Monitoring",
+                delay: 0.1,
+              },
+              {
+                icon: Shield,
+                title: "24/7 Problem Resolution",
+                description: "Immediate response to driver inquiries and delivery issues with emergency protocols",
+                features: ["Emergency protocols", "Technical support", "Real-time assistance"],
+                badge: "9:00 AM - End of Day",
+                delay: 0.2,
+              },
+            ].map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: service.delay }}
+              >
+                <Card className="relative overflow-hidden h-full hover:shadow-lg transition-shadow duration-300">
+                  <CardHeader className="text-center">
+                    <div className="flex flex-col items-center space-y-2">
+                      <service.icon className="h-6 w-6 text-primary" />
+                      <CardTitle>{service.title}</CardTitle>
+                    </div>
+                    <CardDescription>{service.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <ul className="space-y-2 text-sm">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center justify-center space-x-2">
+                          <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex justify-center mt-4">
+                      <Badge variant="outline">{service.badge}</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -243,17 +226,31 @@ export default function VPLogisticsLanding() {
               { step: 5, title: "Label Replacement", desc: "Handle damaged or invalid labels through operations" },
               { step: 6, title: "Damage Control", desc: "Immediate handling of damaged or leaking packages" },
             ].map((item) => (
-              <Card key={item.step} className="text-center">
-                <CardHeader>
-                  <div className="mx-auto w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-lg mb-4">
-                    {item.step}
-                  </div>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </CardContent>
-              </Card>
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: item.step * 0.05 }}
+              >
+                <Card className="text-center h-full hover:shadow-md transition-shadow duration-300">
+                  <CardHeader>
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: item.step * 0.05 + 0.2, type: "spring" }}
+                      className="mx-auto w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-lg mb-4"
+                    >
+                      {item.step}
+                    </motion.div>
+                    <CardTitle className="text-lg">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -262,12 +259,23 @@ export default function VPLogisticsLanding() {
       {/* Marketing Banner */}
       <section className="py-20 bg-gradient-to-r from-primary/5 to-secondary/5">
         <div className="container">
-          <div className="mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-6xl"
+          >
             <div className="relative overflow-hidden rounded-2xl bg-primary text-primary-foreground">
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/90"></div>
               <div className="relative px-8 py-16 md:px-16 md:py-20">
                 <div className="grid gap-8 md:grid-cols-2 items-center">
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                  >
                     <Badge variant="secondary" className="mb-4 bg-white/20 text-white border-white/30">
                       Limited Time Offer
                     </Badge>
@@ -279,7 +287,12 @@ export default function VPLogisticsLanding() {
                       today and experience the difference professional logistics makes.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
-                      <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
+                      <Button
+                        size="lg"
+                        variant="secondary"
+                        className="bg-white text-primary hover:bg-white/90"
+                        onClick={() => setIsQuoteModalOpen(true)}
+                      >
                         Start Free Trial
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
@@ -291,39 +304,42 @@ export default function VPLogisticsLanding() {
                         Schedule Demo
                       </Button>
                     </div>
-                  </div>
-                  <div className="relative">
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="relative"
+                  >
                     <div className="grid grid-cols-2 gap-4">
-                      <Card className="bg-white/10 border-white/20 text-white">
-                        <CardContent className="p-4 text-center">
-                          <div className="text-2xl font-bold">99.8%</div>
-                          <div className="text-sm opacity-80">On-Time Delivery</div>
-                        </CardContent>
-                      </Card>
-                      <Card className="bg-white/10 border-white/20 text-white">
-                        <CardContent className="p-4 text-center">
-                          <div className="text-2xl font-bold">24/7</div>
-                          <div className="text-sm opacity-80">Support Available</div>
-                        </CardContent>
-                      </Card>
-                      <Card className="bg-white/10 border-white/20 text-white">
-                        <CardContent className="p-4 text-center">
-                          <div className="text-2xl font-bold">500+</div>
-                          <div className="text-sm opacity-80">Happy Clients</div>
-                        </CardContent>
-                      </Card>
-                      <Card className="bg-white/10 border-white/20 text-white">
-                        <CardContent className="p-4 text-center">
-                          <div className="text-2xl font-bold">5★</div>
-                          <div className="text-sm opacity-80">Average Rating</div>
-                        </CardContent>
-                      </Card>
+                      {[
+                        { value: "99.8%", label: "On-Time Delivery", delay: 0.4 },
+                        { value: "24/7", label: "Support Available", delay: 0.5 },
+                        { value: "500+", label: "Happy Clients", delay: 0.6 },
+                        { value: "5★", label: "Average Rating", delay: 0.7 },
+                      ].map((stat, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: stat.delay }}
+                        >
+                          <Card className="bg-white/10 border-white/20 text-white hover:bg-white/15 transition-colors duration-300">
+                            <CardContent className="p-4 text-center">
+                              <div className="text-2xl font-bold">{stat.value}</div>
+                              <div className="text-sm opacity-80">{stat.label}</div>
+                            </CardContent>
+                          </Card>
+                        </motion.div>
+                      ))}
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -499,6 +515,9 @@ export default function VPLogisticsLanding() {
           </div>
         </div>
       </footer>
+
+      {/* Get Quote Modal */}
+      <GetQuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
     </div>
   )
 }

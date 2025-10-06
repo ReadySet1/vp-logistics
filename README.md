@@ -14,13 +14,18 @@ A modern, responsive landing page for VP Logistics - built with cutting-edge web
 - 📊 **Analytics Ready** with Umami Analytics integration
 - 📧 **Contact Form** with validation and API endpoint
 - 🎨 **Premium Logo** with gradient effects and modern styling
+- ✨ **Smooth Animations** with Framer Motion for engaging user experience
+- 📋 **Get Quote Modal** with comprehensive quote request form
+- 📮 **Resend Email Integration** for professional email notifications
 
 ## Tech Stack
 
 - **Framework**: Next.js 15 with React 19
 - **Styling**: Tailwind CSS 4 with CSS animations
 - **UI Components**: Radix UI primitives
+- **Animations**: Framer Motion
 - **Icons**: Lucide React
+- **Email**: Resend API
 - **Language**: TypeScript
 - **Development**: Turbopack for fast builds
 
@@ -40,11 +45,7 @@ cd vp-logistics
 
 2. Install dependencies:
 ```bash
-npm install
-# or
 pnpm install
-# or
-yarn install
 ```
 
 3. Set up environment variables:
@@ -53,18 +54,19 @@ cp .env.example .env.local
 ```
 
 Edit `.env.local` with your configuration:
-- `NEXT_PUBLIC_SITE_URL`: Your production URL
+- `RESEND_API_KEY`: Your Resend API key for email functionality
+- `RESEND_FROM_EMAIL`: Email address for sending emails
+- `RESEND_TO_EMAIL`: Email address to receive form submissions
+- `NEXT_PUBLIC_SITE_URL`: Your production URL (optional)
 - `NEXT_PUBLIC_UMAMI_WEBSITE_ID`: Your Umami Analytics website ID (optional)
 - `NEXT_PUBLIC_UMAMI_SCRIPT_URL`: Your Umami Analytics script URL (optional)
 - `NEXT_PUBLIC_GOOGLE_VERIFICATION`: Your Google Search Console verification code (optional)
 
+For detailed email setup instructions, see [docs/RESEND_SETUP.md](./docs/RESEND_SETUP.md)
+
 4. Run the development server:
 ```bash
-npm run dev
-# or
 pnpm dev
-# or
-yarn dev
 ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the landing page.
@@ -74,19 +76,38 @@ yarn dev
 ```
 vp-logistics/
 ├── src/
-│   ├── app/           # Next.js app directory
-│   ├── components/    # Reusable UI components
-│   └── lib/          # Utility functions and configurations
-├── public/           # Static assets
+│   ├── app/
+│   │   ├── api/          # API routes (contact, quote)
+│   │   ├── globals.css   # Global styles and animations
+│   │   ├── layout.tsx    # Root layout
+│   │   └── page.tsx      # Landing page
+│   ├── components/
+│   │   ├── ui/           # UI components (button, card, input, etc.)
+│   │   ├── get-quote-modal.tsx  # Quote request modal
+│   │   └── logo.tsx      # VP Logistics logo
+│   └── lib/              # Utility functions
+├── docs/                 # Documentation
+│   ├── ANIMATION_FEATURES.md
+│   ├── RESEND_SETUP.md
+│   └── QA_TESTING.md
+├── public/               # Static assets
 └── ...
 ```
 
 ## Available Scripts
 
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build the application for production
-- `npm run start` - Start the production server
-- `npm run lint` - Run ESLint for code quality
+- `pnpm dev` - Start development server with Turbopack
+- `pnpm build` - Build the application for production
+- `pnpm start` - Start the production server
+- `pnpm lint` - Run ESLint for code quality
+
+## Documentation
+
+Detailed documentation is available in the [docs](./docs) directory:
+
+- **[Animation Features](./docs/ANIMATION_FEATURES.md)** - Smooth animations and Get Quote modal
+- **[Resend Email Setup](./docs/RESEND_SETUP.md)** - Email configuration guide
+- **[QA Testing](./docs/QA_TESTING.md)** - Quality assurance and testing results
 
 ## Deployment
 
