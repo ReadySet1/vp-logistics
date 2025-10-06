@@ -10,6 +10,10 @@ A modern, responsive landing page for VP Logistics - built with cutting-edge web
 - 🎯 **Radix UI** components for accessible user interfaces
 - ⚡ **Lucide React** icons for clean, modern iconography
 - 📱 **Fully Responsive** design optimized for all devices
+- 🔍 **SEO Optimized** with meta tags, Open Graph, Twitter Cards, and structured data
+- 📊 **Analytics Ready** with Umami Analytics integration
+- 📧 **Contact Form** with validation and API endpoint
+- 🎨 **Premium Logo** with gradient effects and modern styling
 
 ## Tech Stack
 
@@ -43,7 +47,18 @@ pnpm install
 yarn install
 ```
 
-3. Run the development server:
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+```
+
+Edit `.env.local` with your configuration:
+- `NEXT_PUBLIC_SITE_URL`: Your production URL
+- `NEXT_PUBLIC_UMAMI_WEBSITE_ID`: Your Umami Analytics website ID (optional)
+- `NEXT_PUBLIC_UMAMI_SCRIPT_URL`: Your Umami Analytics script URL (optional)
+- `NEXT_PUBLIC_GOOGLE_VERIFICATION`: Your Google Search Console verification code (optional)
+
+4. Run the development server:
 ```bash
 npm run dev
 # or
@@ -52,7 +67,7 @@ pnpm dev
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the landing page.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the landing page.
 
 ## Project Structure
 

@@ -1,21 +1,66 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Truck, Clock, Shield, MapPin, Users, CheckCircle, Phone, Mail, ArrowRight } from "lucide-react"
+import { Clock, Shield, MapPin, Users, CheckCircle, Phone, Mail, ArrowRight } from "lucide-react"
+import { useState, type FormEvent } from "react"
+import { Logo } from "@/components/logo"
 
 export default function VPLogisticsLanding() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    message: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus("success")
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          company: "",
+          message: "",
+        })
+      } else {
+        setSubmitStatus("error")
+      }
+    } catch (error) {
+      console.error("Form submission error:", error)
+      setSubmitStatus("error")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Truck className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold text-primary">VP Logistics</span>
-          </div>
+          <Logo />
           <nav className="hidden md:flex items-center space-x-6">
             <a href="#services" className="text-sm font-medium hover:text-primary transition-colors">
               Services
@@ -300,17 +345,56 @@ export default function VPLogisticsLanding() {
                   <CardDescription>Send us a message and we&apos;ll respond within 24 hours</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <Input placeholder="First Name" />
-                    <Input placeholder="Last Name" />
-                  </div>
-                  <Input placeholder="Email Address" />
-                  <Input placeholder="Company Name" />
-                  <Textarea placeholder="Tell us about your logistics needs..." className="min-h-[120px]" />
-                  <Button className="w-full">
-                    Send Message
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <Input
+                        placeholder="First Name"
+                        required
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                      />
+                      <Input
+                        placeholder="Last Name"
+                        required
+                        value={formData.lastName}
+                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                      />
+                    </div>
+                    <Input
+                      type="email"
+                      placeholder="Email Address"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    />
+                    <Input
+                      placeholder="Company Name"
+                      required
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    />
+                    <Textarea
+                      placeholder="Tell us about your logistics needs..."
+                      className="min-h-[120px]"
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    />
+                    {submitStatus === "success" && (
+                      <div className="text-sm text-green-600 dark:text-green-400">
+                        Thank you! We&apos;ll get back to you within 24 hours.
+                      </div>
+                    )}
+                    {submitStatus === "error" && (
+                      <div className="text-sm text-red-600 dark:text-red-400">
+                        Something went wrong. Please try again or contact us directly.
+                      </div>
+                    )}
+                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? "Sending..." : "Send Message"}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </form>
                 </CardContent>
               </Card>
 
@@ -360,10 +444,7 @@ export default function VPLogisticsLanding() {
         <div className="container">
           <div className="grid gap-8 md:grid-cols-4">
             <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <Truck className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold text-primary">VP Logistics</span>
-              </div>
+              <Logo />
               <p className="text-sm text-muted-foreground">
                 Professional last-mile delivery solutions with reliable, on-time service and advanced tracking.
               </p>
